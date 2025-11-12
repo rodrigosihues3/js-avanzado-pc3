@@ -1,14 +1,13 @@
 // npm install axios
 import axios from 'axios';
 
-// Instancia de Axios con la configuración base
-// const apiClient = axios.create({
-//   // URL del backend Express (el puerto 3002)
-//   baseURL: 'http://localhost:3002/api'
-// });
+// Si VITE_API_URL existe (en .env.development), la usa.
+// Si no (en producción), usa '/api' por defecto.
+const baseURL = import.meta.env.VITE_API_URL || '/api';
+
 const apiClient = axios.create({
   // Simplemente usa una ruta relativa.
-  baseURL: '/api'
+  baseURL: baseURL
 });
 
 // --- ¡NUEVO CÓDIGO AQUÍ! ---

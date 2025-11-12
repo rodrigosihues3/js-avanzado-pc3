@@ -24,6 +24,4 @@ dist-ssr
 *.sw?
 
 .env
-
-# Archivos del sistema operativo
-.DS_Store
+"db.json" 
