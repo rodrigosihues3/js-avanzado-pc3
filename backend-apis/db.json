@@ -1,0 +1,157 @@
+{
+  "usuarios": [
+    {
+      "nombres": "rodrigo",
+      "apellidos": "sihues yanqui",
+      "dni": "74663928",
+      "email": "sihues3@gmail.com",
+      "password": "$2b$10$8/lZPeUKuBettui5vZeVsOTAjm066/1Q7ixS34q5hPlMoYJWE.sq6",
+      "id": 1
+    }
+  ],
+  "productos": [
+    {
+      "nombre": "Iphone 15 pro max",
+      "precio": 5999.9,
+      "descripcion": "",
+      "id": 1
+    },
+    {
+      "nombre": "Iphone 16 pro max",
+      "precio": 6999.9,
+      "descripcion": "1 Tb - Azul noche",
+      "id": 2
+    }
+  ],
+  "comprobantes": [
+    {
+      "serie": "B001",
+      "numero": 2080,
+      "fechaEmision": "2025-11-11",
+      "moneda": "PEN",
+      "cliente": {
+        "tipoDoc": "DNI",
+        "numeroDoc": "46763652",
+        "nombre": "DIEGO REGULO SIHUES LUDEÑA"
+      },
+      "detalle": [
+        {
+          "productoId": 1,
+          "descripcion": "Iphone 15 pro max",
+          "cantidad": 1,
+          "precioUnitario": 5999.9,
+          "esEditable": false
+        },
+        {
+          "productoId": null,
+          "descripcion": "Smart watch 3",
+          "cantidad": 1,
+          "precioUnitario": 2999.99,
+          "esEditable": true
+        }
+      ],
+      "totales": "8999.89",
+      "id": 1,
+      "userId": 1
+    },
+    {
+      "serie": "F001",
+      "numero": 9695,
+      "fechaEmision": "2025-11-11",
+      "moneda": "PEN",
+      "creadoPor": "rodrigo",
+      "cliente": {
+        "tipoDoc": "RUC",
+        "numeroDoc": "20601820111",
+        "nombre": "SERVICIOS GENERALES SIHUES E.I.R.L"
+      },
+      "detalle": [
+        {
+          "productoId": 1,
+          "descripcion": "Iphone 15 pro max",
+          "cantidad": 2,
+          "precioUnitario": 5999.9,
+          "esEditable": false
+        }
+      ],
+      "totales": "11999.80",
+      "id": 2
+    },
+    {
+      "serie": "B001",
+      "numero": 3534,
+      "fechaEmision": "2025-11-12",
+      "moneda": "USD",
+      "tipoCambio": "3.366",
+      "cliente": {
+        "tipoDoc": "DNI",
+        "numeroDoc": "22066682",
+        "nombre": "ROSARIO ELENA TAPIA CHIROQUE"
+      },
+      "detalle": [
+        {
+          "productoId": 1,
+          "descripcion": "Iphone 15 pro max",
+          "cantidad": 2,
+          "precioUnitario": 1485.44266191325,
+          "esEditable": true
+        }
+      ],
+      "totales": "2970.89",
+      "id": 3
+    },
+    {
+      "serie": "B001",
+      "numero": 2903,
+      "fechaEmision": "2025-11-12",
+      "moneda": "PEN",
+      "tipoCambio": null,
+      "cliente": {
+        "tipoDoc": "DNI",
+        "numeroDoc": "22066683",
+        "nombre": "TERESA ANTONIA LUDEÑA ALMENARA"
+      },
+      "detalle": [
+        {
+          "productoId": 2,
+          "descripcion": "Iphone 16 pro max",
+          "cantidad": 3,
+          "precioUnitario": 1000,
+          "esEditable": true
+        }
+      ],
+      "totales": "3000.00",
+      "id": 4
+    },
+    {
+      "serie": "B001",
+      "numero": 6773,
+      "fechaEmision": "2025-11-12",
+      "moneda": "PEN",
+      "tipoCambio": null,
+      "cliente": {
+        "tipoDoc": "DNI",
+        "numeroDoc": "22066683",
+        "nombre": "TERESA ANTONIA LUDEÑA ALMENARA"
+      },
+      "detalle": [
+        {
+          "productoId": null,
+          "descripcion": "Applewatch 3",
+          "cantidad": 3,
+          "precioUnitario": 2999.9,
+          "esEditable": true
+        },
+        {
+          "productoId": null,
+          "descripcion": "Earpods 3",
+          "cantidad": 2,
+          "precioUnitario": 599,
+          "esEditable": true
+        }
+      ],
+      "totales": "10197.70",
+      "id": 5
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+.navbar-transparent {
+  /* Transparente y pegado arriba */
+  background-color: transparent !important;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.navbar-scrolled {
+  /* Blanco, con sombra y pegado arriba */
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.navbar .btn-outline-primary {
+  border-width: 2px;
+  font-weight: 600;
+}
+
+.navbar .btn-primary {
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.navbar-scrolled .navbar-nav .nav-link,
+.navbar-scrolled .navbar-brand {
+  color: #212529 !important;
+}
+
+.navbar-scrolled .navbar-nav .nav-link:hover {
+  color: var(--bs-primary) !important;
+}
+
+
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Ocupa al menos el 100% de la altura de la pantalla */
+}
+
+.content-wrapper {
+  flex: 1 0 auto;
+}
+
+.footer-wrapper {
+  flex-shrink: 0;
+}
+
+
+
+.form-control:read-only:not(.bg-light) {
+  background-color: #f8f9fa;
+  /* Un gris claro, igual al 'bg-light' de Bootstrap */
+  opacity: 0.9;
+}

@@ -1,0 +1,189 @@
+/* src/pages/Home.css */
+
+/* --- Animaciones --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-25px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* --- Estilos Landing Page (Pública) --- */
+.hero-section {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Evita que las animaciones causen scroll */
+}
+
+.hero-text {
+  animation: fadeIn 1s ease-out;
+}
+
+.hero-image {
+  animation: float 6s ease-in-out infinite;
+  max-width: 450px;
+}
+
+.features-section {
+  background-color: #f8f9fa;
+  /* Un fondo gris claro */
+  padding: 4rem 0;
+}
+
+.feature-card {
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1) !important;
+}
+
+/* --- Estilos Dashboard (Privada) --- */
+.dashboard-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  /* Hereda el color del texto */
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 80, 255, 0.15) !important;
+  cursor: pointer;
+}
+
+.dashboard-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Icono grande (puedes reemplazar 'i' por SVGs si quieres) */
+.dashboard-icon {
+  font-size: 3rem;
+  color: var(--bs-primary);
+  /* Usa el color azul primario */
+  margin-bottom: 1rem;
+}
+
+/* --- Estilos para la Falsa Boleta Animada --- */
+.hero-invoice-container {
+  /* Aplica la animación flotante que ya tenías */
+  animation: float 4s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fake-invoice-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 380px;
+  height: 480px;
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+  font-family: 'Courier New', Courier, monospace;
+  /* Le da un look de "recibo" */
+}
+
+.fake-invoice-header {
+  background: var(--bs-primary);
+  /* Usa tu color azul primario */
+  color: white;
+  padding: 18px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fake-invoice-header strong {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.fake-invoice-header span {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.fake-invoice-body {
+  padding: 25px;
+}
+
+/* Estas son las líneas grises que simulan texto */
+.fake-line {
+  background: #f0f2f5;
+  height: 12px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.fake-line.long {
+  width: 85%;
+}
+
+.fake-line.medium {
+  width: 60%;
+}
+
+.fake-line.short {
+  width: 30%;
+}
+
+.fake-divider {
+  border: 0;
+  height: 1px;
+  background-color: #f0f2f5;
+  margin: 25px 0;
+}
+
+/* Simulación de los items de la boleta */
+.fake-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.fake-footer {
+  border-top: 2px dashed #f0f2f5;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.fake-total {
+  color: var(--bs-primary);
+  font-size: 1.6rem;
+}
