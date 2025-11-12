@@ -1,7 +1,7 @@
 # --- 1. Imagen Base ---
 # Empezamos con una imagen oficial de Node.js. 
 # 'alpine' es una versión ligera de Linux, perfecta para producción.
-FROM node:18-alpine
+FROM node:22-alpine
 
 # --- 2. Directorio de Trabajo ---
 # Creamos una carpeta dentro del contenedor donde vivirá nuestra app.

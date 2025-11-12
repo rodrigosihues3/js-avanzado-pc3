@@ -1,7 +1,7 @@
 # --- ETAPA 1: Construcción (La "Cocina" con Node.js) ---
 # Usamos la misma imagen de Node que el backend para la consistencia
 # Nombramos esta etapa como "builder"
-FROM node:18-alpine AS builder
+FROM node:22-alpine AS builder
 
 # Directorio de trabajo
 WORKDIR /app
