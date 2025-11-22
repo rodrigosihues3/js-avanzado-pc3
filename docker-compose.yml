@@ -1,40 +1,34 @@
-# Definimos los servicios (contenedores) que levantaremos
+# Define la colección de servicios (contenedores) que componen la aplicación.
 services:
-  # --- 1. El Servicio del Backend (Express) ---
+  # Servicio del backend (API con Express).
   backend:
-    # Nombre del contenedor (opcional, pero recomendado)
+    # Asigna un nombre específico al contenedor para fácil identificación.
     container_name: express-api
-    # Le decimos que construya la imagen usando el Dockerfile
-    # que está en la carpeta ./backend-apis
+    # Construye la imagen del backend a partir del Dockerfile en el directorio ./backend-apis.
     build: ./backend-apis
-    # Reinicia automáticamente el contenedor si falla
+    # Política de reinicio: el contenedor se reiniciará a menos que se detenga manualmente.
     restart: unless-stopped
-    # Carga las variables de entorno (API_KEY, PORT)
-    # desde el archivo .env en la carpeta del backend
+    # Carga las variables de entorno desde el archivo .env ubicado en el directorio del backend.
     env_file:
       - ./backend-apis/.env
-    # --- ¡El Volumen! ---
-    # Creamos el "portal" que conecta el db.json de la VM
-    # con el interior del contenedor.
+    # Monta un volumen para persistir los datos de la base de datos (db.json),
+    # sincronizando el archivo local con el del contenedor.
     volumes:
       - ./backend-apis/db.json:/app/db.json
-    # OJO: No exponemos puertos (expose), porque solo Nginx
-    # (el frontend) hablará con él.
+    # No se exponen puertos al exterior, ya que la comunicación
+    # será interna a través de la red de Docker con el frontend.
 
-  # --- 2. El Servicio del Frontend (React + Nginx) ---
+  # Servicio del frontend (Aplicación React servida con Nginx).
   frontend:
     container_name: react-nginx
-    # Construye la imagen usando el Dockerfile
-    # que está en la carpeta ./practica-calificada-3
+    # Construye la imagen del frontend a partir del Dockerfile en el directorio especificado.
     build: ./practica-calificada-3
     restart: unless-stopped
-    # --- ¡El Puerto! ---
-    # Mapea el puerto 80 de la VM (lo que ve el mundo)
-    # al puerto 80 del contenedor (donde escucha Nginx)
+    # Mapea el puerto 80 de la máquina anfitriona al puerto 80 del contenedor,
+    # permitiendo el acceso a la aplicación desde el navegador.
     ports:
       - "80:80"
-    # --- La Conexión ---
-    # Le dice a Docker: "No inicies este contenedor
-    # HASTA QUE el servicio 'backend' esté listo".
+    # Define una dependencia de inicio. El frontend no se iniciará
+    # hasta que el servicio 'backend' esté completamente operativo.
     depends_on:
       - backend

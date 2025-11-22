@@ -1,35 +1,33 @@
-# --- ETAPA 1: Construcción (La "Cocina" con Node.js) ---
-# Usamos la misma imagen de Node que el backend para la consistencia
-# Nombramos esta etapa como "builder"
+# ETAPA 1: Construcción del proyecto React.
+# Se utiliza una imagen de Node.js para construir la aplicación.
+# Esta etapa se nombra "builder" para poder referenciarla luego.
 FROM node:22-alpine AS builder
 
-# Directorio de trabajo
+# Establece el directorio de trabajo dentro del contenedor.
 WORKDIR /app
 
-# Copiamos e instalamos dependencias
+# Copia los archivos de dependencias e instala los paquetes de Node.
 COPY package*.json ./
 RUN npm install
 
-# Copiamos todo el código fuente de React
+# Copia el resto del código fuente de la aplicación.
 COPY . .
 
-# ¡El comando clave! Esto crea la carpeta /app/dist con los archivos estáticos
+# Ejecuta el script de build para generar los archivos estáticos de producción.
 RUN npm run build
 
-# --- ETAPA 2: Servidor (El "Mostrador" con Nginx) ---
-# Empezamos una imagen NUEVA y limpia, solo con el servidor web Nginx
+# ETAPA 2: Servidor web para producción.
+# Se utiliza una imagen ligera de Nginx para servir los archivos.
 FROM nginx:stable-alpine
 
-# Exponemos el puerto 80 (el puerto estándar de Nginx)
+# Expone el puerto 80 para permitir el tráfico HTTP.
 EXPOSE 80
 
-# Copiamos los archivos estáticos (HTML, CSS, JS) desde la etapa 'builder'
-# 'builder' es el nombre que le dimos a la Etapa 1
+# Copia los archivos estáticos generados en la etapa "builder".
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copia nuestro archivo de configuración personalizado de Nginx
-# y reemplaza al que viene por defecto.
+# Reemplaza la configuración por defecto de Nginx con una personalizada.
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# El comando para iniciar el servidor Nginx
+# Comando para iniciar el servidor Nginx cuando el contenedor se ejecute.
 CMD ["nginx", "-g", "daemon off;"]
