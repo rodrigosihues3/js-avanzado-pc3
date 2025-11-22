@@ -1,25 +1,29 @@
+// Importación de Axios, un cliente HTTP basado en promesas para realizar peticiones a APIs.
 import axios from 'axios';
 
-// API key desde el archivo .env
+// Se obtiene la clave de API desde las variables de entorno para mantenerla segura y configurable.
 const API_KEY = process.env.DECOLECTA_API_KEY;
 
-// Configuramos una "instancia" de Axios con los headers que siempre se repiten
+// Se crea una instancia pre-configurada de Axios. Esto evita repetir la URL base
+// y los encabezados de autorización en cada llamada a la API.
 const api = axios.create({
   baseURL: 'https://api.decolecta.com/v1',
   headers: {
     'Authorization': `Bearer ${API_KEY}`,
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json' // Se especifica el tipo de contenido esperado.
   }
 });
 
 // --- Servicio para consultar DNI (Reniec) ---
 export const consultarDni = async (numeroDni) => {
   try {
+    // Realiza una petición GET al endpoint de Reniec, pasando el número de DNI como parámetro.
     const response = await api.get(`/reniec/dni?numero=${numeroDni}`);
     return response.data;
   } catch (error) {
-    // Manejamos el error de la API externa
+    // En caso de error en la petición, se registra el detalle en consola para depuración.
     console.error('Error en servicio de Reniec:', error.response?.data || error.message);
+    // Se lanza un nuevo error con un mensaje genérico para que el controlador lo maneje.
     throw new Error('No se pudo consultar el DNI.');
   }
 };
@@ -27,6 +31,7 @@ export const consultarDni = async (numeroDni) => {
 // --- Servicio para consultar RUC (Sunat) ---
 export const consultarRuc = async (numeroRuc) => {
   try {
+    // Realiza una petición GET al endpoint de Sunat para obtener información del RUC.
     const response = await api.get(`/sunat/ruc?numero=${numeroRuc}`);
     return response.data;
   } catch (error) {
@@ -38,7 +43,7 @@ export const consultarRuc = async (numeroRuc) => {
 // --- Servicio para consultar Tipo de Cambio (Sunat) ---
 export const consultarTipoCambio = async () => {
   try {
-    // Pide el tipo de cambio del día (sin parámetros)
+    // Realiza una petición GET para obtener el tipo de cambio del día desde el endpoint de Sunat.
     const response = await api.get('/tipo-cambio/sunat');
     return response.data;
   } catch (error) {

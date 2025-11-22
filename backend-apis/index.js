@@ -1,38 +1,39 @@
-// Cargar las variables de entorno (del .env)
+// Importa y ejecuta la configuración de dotenv para cargar variables de entorno desde un archivo .env.
 import 'dotenv/config';
+// Framework principal para la creación del servidor y la gestión de rutas.
 import express from 'express';
+// Middleware para habilitar el Intercambio de Recursos de Origen Cruzado (CORS).
 import cors from 'cors';
+// Importación del enrutador principal que agrupa todas las rutas de la API.
 import mainRoutes from './routes/index.routes.js';
 
-// Creación de la aplicación Express
+// --- Inicialización de la Aplicación ---
 const app = express();
 
-// Configuración de CORS
+// --- Configuración de Middlewares Globales ---
+
+// Define la configuración específica para CORS, permitiendo solicitudes solo desde el origen del frontend.
 const corsOptions = {
-  // React/Vite correrá en el puerto 3003
   origin: 'http://localhost:3003'
 };
+// Aplica el middleware CORS a todas las rutas de la aplicación.
 app.use(cors(corsOptions));
 
-// Middlewares, permite a Express entender el JSON que envía el frontend
+// Middleware incorporado de Express para analizar cuerpos de solicitud en formato JSON.
 app.use(express.json());
 
-// Rutas (conexión de controladores)
+// --- Montaje de Rutas ---
+// Monta el enrutador principal en el prefijo '/api'. Todas las rutas definidas en `mainRoutes`
+// serán accesibles bajo este prefijo (ej. /api/auth/login).
 app.use('/api', mainRoutes);
 
-// --- MANEJADOR 404 DE LA API ---
-// Se activa si ninguna ruta anterior (en mainRoutes o '/') coincide
-app.use((req, res) => {
-  res.status(404).json({ message: 'Endpoint no encontrado' });
-});
-
-// Ruta de prueba para saber que el servidor funciona
+// Endpoint en la ruta raíz para una verificación básica del estado del servidor.
 app.get('/', (req, res) => {
   res.send('¡Backend de Facturación funcionando!');
 });
 
-// Iniciar el Servidor
-// Lee el puerto del archivo .env. Si no lo encuentra, usa el 3001.
+// --- Arranque del Servidor ---
+// Se define el puerto para el servidor, priorizando la variable de entorno `PORT`.
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
